@@ -17,7 +17,7 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> listAll(){
+    public List<Todo> list(){
         //Filtrando primeiro por prioridade de forma descendente depois por nome de forma ascendente, colocando na var
         //sort e então dando findall dessa sort
         Sort sort = Sort.by("priority").descending().and(Sort.by("name").ascending());
@@ -25,15 +25,15 @@ public class TodoService {
     }
     public List<Todo> create(Todo todo){
         todoRepository.save(todo);
-        return listAll(); //Depois de criar vai listar tudo como criado acima, assim você não precisa escrever toda a
+        return list(); //Depois de criar vai listar tudo como criado acima, assim você não precisa escrever toda a
         //listagem novamente, repetindo código
     }
     public List<Todo> delete(Long id){
         todoRepository.deleteById(id);
-        return listAll();
+        return list();
     }
     public List<Todo> update(Todo todo){
         todoRepository.save(todo);
-        return listAll();
+        return list();
     }
 }
